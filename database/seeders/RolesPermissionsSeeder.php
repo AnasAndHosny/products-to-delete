@@ -18,11 +18,13 @@ class RolesPermissionsSeeder extends Seeder
     {
         // Create roles
         $adminRole = Role::create(['name' => 'admin']);
-        $clientRole = Role::create(['name' => 'client']);
+        $warehouseManagerRole = Role::create(['name' => 'warehouse manager']);
+        $assistantManagerRole = Role::create(['name' => 'assistant manager']);
+        $distributionAgentRole = Role::create(['name' => 'distribution agent']);
 
         // Define permissions
         $permissions = [
-            'delete.report', 'update.report', 'create.report', 'index.report'
+            'users.create', 'update.report', 'create.report', 'index.report'
         ];
         foreach ($permissions as $permissionName) {
             Permission::findOrCreate($permissionName, 'web');
@@ -30,13 +32,16 @@ class RolesPermissionsSeeder extends Seeder
 
         // Assign permissions to roles
         $adminRole->syncPermissions($permissions); // delete old permissions and keep those inside the $permissions
-        $clientRole->givePermissionTo(['create.report', 'index.report']); // add permission on top of old ones
+        $warehouseManagerRole->syncPermissions($permissions);
+        $assistantManagerRole->syncPermissions($permissions);
+        $distributionAgentRole->syncPermissions($permissions);
 
         //////////////////////////////////////////////////////////////
 
         // Create users and assign roles
         $adminUser = User::factory()->create([
             'name' => 'Admin User',
+            'username' => 'admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
@@ -48,16 +53,16 @@ class RolesPermissionsSeeder extends Seeder
 
         //////////////////////////////////////////////////////////////
 
-        // Create users and assign roles
-        $clientUser = User::factory()->create([
-            'name' => 'Client User',
-            'email' => 'client@example.com',
-            'password' => bcrypt('password'),
-        ]);
-        $clientUser->assignRole($clientRole);
-
-        // Assign permission associated with the role to the user
-        $permissions = $clientRole->permissions()->pluck('name')->toArray();
-        $clientUser->givePermissionTo($permissions);
+//        // Create users and assign roles
+//        $clientUser = User::factory()->create([
+//            'name' => 'Client User',
+//            'email' => 'client@example.com',
+//            'password' => bcrypt('password'),
+//        ]);
+//        $clientUser->assignRole($clientRole);
+//
+//        // Assign permission associated with the role to the user
+//        $permissions = $clientRole->permissions()->pluck('name')->toArray();
+//        $clientUser->givePermissionTo($permissions);
     }
 }
