@@ -37,7 +37,8 @@ class UserService
         $user['token'] = $user->createToken('token')->plainTextToken;
 
         $message = 'User created successfully.';
-        return ['user' => $user, 'message' => $message];
+        $code = 201;
+        return ['user' => $user, 'message' => $message, 'code' => $code];
     }
 
     public function login($request): array

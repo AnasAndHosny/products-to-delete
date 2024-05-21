@@ -24,7 +24,7 @@ class RolesPermissionsSeeder extends Seeder
 
         // Define permissions
         $permissions = [
-            'users.create', 'update.report', 'create.report', 'index.report'
+            'category.index', 'category.store', 'category.show', 'category.update', 'category.destroy',
         ];
         foreach ($permissions as $permissionName) {
             Permission::findOrCreate($permissionName, 'web');

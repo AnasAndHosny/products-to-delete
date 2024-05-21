@@ -24,7 +24,7 @@ class AuthController extends Controller
         $data = [];
         try {
             $data = $this->userService->register($request->validated());
-            return Response::Success($data['user'], $data['message']);
+            return Response::Success($data['user'], $data['message'], $data['code']);
         }catch (Throwable $th) {
             $message = $th->getMessage();
             return Response::Error($data, $message);
