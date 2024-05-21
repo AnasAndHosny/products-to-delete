@@ -26,7 +26,7 @@ class UserSignupRequest extends FormRequest
     {
         return [
             'name' => ['nullable', 'string'],
-            'username' => ['required', 'unique:users,username', 'string', 'min:3'],
+            'username' => ['required', 'string', 'min:3'],
             'phone_number' => ['nullable', 'digits:10', 'starts_with:09'],
             'address' => ['nullable', 'string'],
             'ssn' => ['nullable', 'digits:11'],

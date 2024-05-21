@@ -9,7 +9,7 @@ class CategoryService
     public function index()
     {
         $category = Category::paginate();
-        $message = 'Categories list retrieved successfully.';
+        $message = __('messages.index_success', ['class' => __('Categories')]);
         $code = 200;
         return ['category' => $category, 'message' => $message, 'code' => $code];
     }
@@ -23,14 +23,14 @@ class CategoryService
             'name_en' => $request['name_en']
         ]);
 
-        $message = 'Category created successfully.';
+        $message = __('messages.store_success', ['class' => __('category')]);
         $code = 201;
         return ['category' => $category, 'message' => $message, 'code' => $code];
     }
 
     public function show(Category $category): array
     {
-        $message = 'Category retrieved successfully.';
+        $message = __('messages.show_success', ['class' => __('category')]);
         $code = 200;
         return ['category' => $category, 'message' => $message, 'code' => $code];
     }
@@ -45,7 +45,7 @@ class CategoryService
         ]);
         $category = Category::query()->find($category->id);
 
-        $message = 'Category updated successfully.';
+        $message = __('messages.update_success', ['class' => __('category')]);
         $code = 200;
         return ['category' => $category, 'message' => $message, 'code' => $code];
     }

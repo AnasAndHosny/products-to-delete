@@ -18,13 +18,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->api(prepend: [
+            \App\Http\Middleware\Localization::class, //change locale language for api routes
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // handle NotAuthorized exceptions from api requests and send JsonResponse
         $exceptions->render(function (AccessDeniedHttpException $e, $request) {
             if ($request->is('api/*')) {
-                return Response::Error([], 'You do not have the required authorization.', 403);
+                return Response::Error([], __('messages.notAuthorized'), 403);
             }
         });
 
@@ -44,7 +46,7 @@ return Application::configure(basePath: dirname(__DIR__))
                         $class = 'record';
                         break;
                 }
-                return Response::Error([], $class . 'not found', 404);
+                return Response::Error([], __('messages.notFound', ['class' => __($class)]), 404);
             }
         });
     })->create();
