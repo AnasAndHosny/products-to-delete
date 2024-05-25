@@ -189,8 +189,9 @@ return [
     */
 
     'attributes' => [
-        'name_ar' => 'arabic name',
-        'name_en' => 'english name',
+        'name_ar'       => 'arabic name',
+        'name_en'       => 'english name',
+        'category_id'   => 'category',
     ],
 
 ];

@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\StoreCategoryRequest;
-use App\Http\Requests\Category\UpdateCategoryRequest;
+use App\Http\Requests\SubCategory\StoreSubCategoryRequest;
+use App\Http\Requests\SubCategory\UpdateSubCategoryRequest;
 use App\Http\Responses\Response;
-use App\Models\Category;
-use App\Services\CategoryService;
+use App\Models\SubCategory;
+use App\Services\SubCategoryService;
 use Illuminate\Http\JsonResponse;
 use Throwable;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
-    private CategoryService $categoryService;
+    private SubCategoryService $subCategoryService;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(SubCategoryService $subCategoryService)
     {
-        $this->categoryService = $categoryService;
+        $this->subCategoryService = $subCategoryService;
     }
-
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +25,7 @@ class CategoryController extends Controller
     {
         $data = [];
         try {
-            $data = $this->categoryService->index();
+            $data = $this->subCategoryService->index();
             return Response::Success($data['category'], $data['message'], $data['code']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -37,11 +36,11 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCategoryRequest $request): JsonResponse
+    public function store(StoreSubCategoryRequest $request): JsonResponse
     {
         $data = [];
         try {
-            $data = $this->categoryService->store($request);
+            $data = $this->subCategoryService->store($request);
             return Response::Success($data['category'], $data['message'], $data['code']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -52,11 +51,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category): JsonResponse
+    public function show(SubCategory $category): JsonResponse
     {
         $data = [];
         try {
-            $data = $this->categoryService->show($category);
+            $data = $this->subCategoryService->show($category);
             return Response::Success($data['category'], $data['message'], $data['code']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -67,26 +66,11 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category): JsonResponse
+    public function update(UpdateSubCategoryRequest $request, SubCategory $category): JsonResponse
     {
         $data = [];
         try {
-            $data = $this->categoryService->update($request, $category);
-            return Response::Success($data['category'], $data['message'], $data['code']);
-        } catch (Throwable $th) {
-            $message = $th->getMessage();
-            return Response::Error($data, $message);
-        }
-    }
-
-    /**
-     * Display a listing of the sub-categories from specific Category.
-     */
-    public function subCategoriesList(Category $category): JsonResponse
-    {
-        $data = [];
-        try {
-            $data = $this->categoryService->subCategoriesList($category);
+            $data = $this->subCategoryService->update($request, $category);
             return Response::Success($data['category'], $data['message'], $data['code']);
         } catch (Throwable $th) {
             $message = $th->getMessage();
@@ -97,11 +81,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy(SubCategory $category): JsonResponse
     {
         $data = [];
         try {
-            $data = $this->categoryService->destroy($category);
+            $data = $this->subCategoryService->destroy($category);
             return Response::Success($data['category'], $data['message'], $data['code']);
         } catch (Throwable $th) {
             $message = $th->getMessage();

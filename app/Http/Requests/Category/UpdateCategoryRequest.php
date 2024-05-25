@@ -25,7 +25,6 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['image', 'nullable', 'mimes:jpeg,png,bmp,jpg,gif,svg', 'max:512'],
             'name_ar' => ['string', 'unique:categories'],
             'name_en' => ['string', 'unique:categories']
         ];

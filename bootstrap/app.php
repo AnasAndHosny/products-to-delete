@@ -2,6 +2,7 @@
 
 use App\Http\Responses\Response;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
@@ -38,7 +39,7 @@ return Application::configure(basePath: dirname(__DIR__))
                         $class = 'user';
                         break;
 
-                    case Category::class:
+                    case Category::class: case SubCategory::class:
                         $class = 'category';
                         break;
 

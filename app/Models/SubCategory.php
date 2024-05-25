@@ -4,16 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\App;
 
-class Category extends Model
+class SubCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'image',
         'name_ar',
-        'name_en'
+        'name_en',
+        'category_id'
     ];
 
     // implement the attribute
@@ -22,8 +25,8 @@ class Category extends Model
         return $this->{'name_' . App::getlocale()};
     }
 
-    public function subCategories(): HasMany
+    public function category(): BelongsTo
     {
-        return $this->hasMany(SubCategory::class);
+        return $this->belongsTo(Category::class);
     }
 }

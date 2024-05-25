@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests\SubCategory;
 
 use App\Http\Responses\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-class StoreCategoryRequest extends FormRequest
+class StoreSubCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,10 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => ['required', 'string', 'unique:categories'],
-            'name_en' => ['required', 'string', 'unique:categories']
+            'image' => ['image', 'nullable', 'mimes:jpeg,png,bmp,jpg,gif,svg', 'max:256'],
+            'name_ar' => ['required', 'string', 'unique:sub_categories'],
+            'name_en' => ['required', 'string', 'unique:sub_categories'],
+            'category_id' => ['required', 'exists:categories,id']
         ];
     }
 

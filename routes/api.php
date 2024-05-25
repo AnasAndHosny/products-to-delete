@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,16 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::prefix('category')->controller(CategoryController::class)->group(function () {
+    Route::prefix('categories')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->middleware('can:category.index');
+        Route::post('/', 'store')->middleware('can:category.store');
+        Route::get('{category}', 'show')->middleware('can:category.show');
+        Route::patch('{category}', 'update')->middleware('can:category.update');
+        Route::get('{category}/subcategories', 'subCategoriesList')->middleware('can:category.show');
+        Route::delete('{category}', 'destroy')->middleware('can:category.destroy');
+    });
+
+    Route::prefix('subcategories')->controller(SubCategoryController::class)->group(function () {
         Route::get('/', 'index')->middleware('can:category.index');
         Route::post('/', 'store')->middleware('can:category.store');
         Route::get('{category}', 'show')->middleware('can:category.show');
