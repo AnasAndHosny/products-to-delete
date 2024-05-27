@@ -2,6 +2,8 @@
 
 use App\Http\Responses\Response;
 use App\Models\Category;
+use App\Models\City;
+use App\Models\State;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -19,6 +21,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        ]);
+
         $middleware->api(prepend: [
             \App\Http\Middleware\Localization::class, //change locale language for api routes
         ]);
@@ -41,6 +49,14 @@ return Application::configure(basePath: dirname(__DIR__))
 
                     case Category::class: case SubCategory::class:
                         $class = 'category';
+                        break;
+
+                    case City::class:
+                            $class = 'city';
+                            break;
+
+                    case State::class:
+                        $class = 'state';
                         break;
 
                     default:

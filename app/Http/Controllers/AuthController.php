@@ -7,7 +7,6 @@ use App\Http\Requests\Auth\UserSignupRequest;
 use App\Http\Responses\Response;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Throwable;
 
 class AuthController extends Controller

@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\SubCategoryCollection;
-use App\Http\Resources\SubCategoryResource;
 use App\Models\Category;
 use App\Models\SubCategory;
 

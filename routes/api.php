@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +35,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::patch('{category}', 'update')->middleware('can:category.update');
         Route::delete('{category}', 'destroy')->middleware('can:category.destroy');
     });
+});
+
+Route::prefix('cities')->controller(CityController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('{city}/states', 'statesList');
+});
+
+Route::prefix('states')->controller(StateController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+    Route::get('{state}', 'show');
+    Route::patch('{state}', 'update');
 });

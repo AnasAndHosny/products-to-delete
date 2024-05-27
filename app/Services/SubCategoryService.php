@@ -46,7 +46,7 @@ class SubCategoryService
             'image' => $image,
             'name_ar' => $request['name_ar'] ?? $category['name_ar'],
             'name_en' => $request['name_en'] ?? $category['name_en'],
-            'category_id' => $request['category_id'] ?? $category['name_en']
+            'category_id' => $request['category_id'] ?? $category['category_id']
         ]);
 
         $category = new SubCategoryResource($category);

@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 
-class SubCategory extends Model
+class State extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'image',
         'name_ar',
         'name_en',
-        'category_id'
+        'city_id'
     ];
 
     // implement the attribute
@@ -24,8 +23,8 @@ class SubCategory extends Model
         return $this->{'name_' . App::getlocale()};
     }
 
-    public function category(): BelongsTo
+    public function city(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(City::class);
     }
 }
