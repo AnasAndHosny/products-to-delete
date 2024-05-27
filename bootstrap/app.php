@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\State;
 use App\Models\SubCategory;
 use App\Models\User;
+use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -52,11 +53,15 @@ return Application::configure(basePath: dirname(__DIR__))
                         break;
 
                     case City::class:
-                            $class = 'city';
-                            break;
+                        $class = 'city';
+                        break;
 
                     case State::class:
                         $class = 'state';
+                        break;
+
+                    case Warehouse::class:
+                        $class = 'warehouse';
                         break;
 
                     default:

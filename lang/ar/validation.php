@@ -210,6 +210,9 @@ return [
         'image'                 => 'الصورة',
         'category_id'           => 'التصنيف',
         'city_id'               => 'المحافظة',
+        'state_id'              => 'المدينة',
+        'street_address_ar'     => 'المنطقة باللغة العربية',
+        'street_address_en'     => 'المنطقة باللغة الانكليزية'
     ],
 
 ];

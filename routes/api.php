@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\WarehouseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('{category}', 'show')->middleware('can:category.show');
         Route::patch('{category}', 'update')->middleware('can:category.update');
         Route::delete('{category}', 'destroy')->middleware('can:category.destroy');
+    });
+
+    Route::prefix('warehouses')->controller(WarehouseController::class)->group(function () {
+        Route::get('/', 'index')->middleware('can:warehouse.index');
+        Route::post('/', 'store')->middleware('can:warehouse.store');
+        Route::get('{warehouse}', 'show')->middleware('can:warehouse.show');
+        Route::patch('{warehouse}', 'update')->middleware('can:warehouse.update');
     });
 });
 
