@@ -55,5 +55,7 @@
     "state":"المدينة",
     "states":"المدن",
     "warehouses":"المستودعات",
-    "warehouse":"المستودع"
+    "warehouse":"المستودع",
+    "distribution centers":"مراكز التوزيع",
+    "distribution center":"مركز التوزيع"
 }

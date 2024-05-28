@@ -195,7 +195,8 @@ return [
         'city_id'                 => 'city',
         'state id'                => 'state',
         'street_address_ar'       => 'street address in arabic',
-        'street_address_en'       => 'street address in english'
+        'street_address_en'       => 'street address in english',
+        'warehouse_id'            => 'warehouse'
     ],
 
 ];

@@ -3,6 +3,7 @@
 use App\Http\Responses\Response;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\DistributionCenter;
 use App\Models\State;
 use App\Models\SubCategory;
 use App\Models\User;
@@ -62,6 +63,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
                     case Warehouse::class:
                         $class = 'warehouse';
+                        break;
+
+                    case DistributionCenter::class:
+                        $class = 'distribution center';
                         break;
 
                     default:

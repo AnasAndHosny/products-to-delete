@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\DistributionCenterController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\WarehouseController;
@@ -42,6 +43,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/', 'store')->middleware('can:warehouse.store');
         Route::get('{warehouse}', 'show')->middleware('can:warehouse.show');
         Route::patch('{warehouse}', 'update')->middleware('can:warehouse.update');
+    });
+
+    Route::prefix('distribution-center')->controller(DistributionCenterController::class)->group(function () {
+        Route::get('/', 'index')->middleware('can:distributionCenter.index');
+        Route::post('/', 'store')->middleware('can:distributionCenter.store');
+        Route::get('{distributionCenter}', 'show')->middleware('can:distributionCenter.show');
+        Route::patch('{distributionCenter}', 'update')->middleware('can:distributionCenter.update');
     });
 });
 
