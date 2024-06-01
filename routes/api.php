@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DistributionCenterController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\WarehouseController;
@@ -26,7 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/', 'store')->middleware('can:category.store');
         Route::get('{category}', 'show')->middleware('can:category.show');
         Route::patch('{category}', 'update')->middleware('can:category.update');
-        Route::get('{category}/subcategories', 'subCategoriesList')->middleware('can:category.show');
+        Route::get('{category}/subcategories', 'subCategoriesList')->middleware('can:category.index');
         Route::delete('{category}', 'destroy')->middleware('can:category.destroy');
     });
 
@@ -35,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/', 'store')->middleware('can:category.store');
         Route::get('{category}', 'show')->middleware('can:category.show');
         Route::patch('{category}', 'update')->middleware('can:category.update');
+        Route::get('{category}/products', 'productsList')->middleware('can:product.index');
         Route::delete('{category}', 'destroy')->middleware('can:category.destroy');
     });
 
@@ -50,6 +52,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/', 'store')->middleware('can:distributionCenter.store');
         Route::get('{distributionCenter}', 'show')->middleware('can:distributionCenter.show');
         Route::patch('{distributionCenter}', 'update')->middleware('can:distributionCenter.update');
+    });
+
+    Route::prefix('products')->controller(ProductController::class)->group(function () {
+        Route::get('/', 'index')->middleware('can:product.index');
+        Route::post('/', 'store')->middleware('can:product.store');
+        Route::get('{product}','show')->middleware('can:product.show');
+        Route::patch('{product}', 'update')->middleware('can:product.update');
     });
 });
 

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Http\Resources\ProductCollection;
 use App\Http\Resources\SubCategoryResource;
+use App\Models\Product;
 use App\Models\SubCategory;
 
 class SubCategoryService
@@ -53,6 +55,15 @@ class SubCategoryService
         $message = __('messages.update_success', ['class' => __('category')]);
         $code = 200;
         return ['category' => $category, 'message' => $message, 'code' => $code];
+    }
+
+    public function productsList(SubCategory $category): array
+    {
+        $product = Product::where('subcategory_id', $category->id)->paginate();
+        $product = new ProductCollection($product);
+        $message = __('messages.index_success', ['class' => __('products')]);
+        $code = 200;
+        return ['product' => $product, 'message' => $message, 'code' => $code];
     }
 
     public function destroy(SubCategory $category): array

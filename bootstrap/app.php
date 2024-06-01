@@ -4,6 +4,7 @@ use App\Http\Responses\Response;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\DistributionCenter;
+use App\Models\Product;
 use App\Models\State;
 use App\Models\SubCategory;
 use App\Models\User;
@@ -67,6 +68,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
                     case DistributionCenter::class:
                         $class = 'distribution center';
+                        break;
+
+                    case Product::class:
+                        $class = 'product';
                         break;
 
                     default:

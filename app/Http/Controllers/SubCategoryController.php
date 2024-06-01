@@ -79,6 +79,21 @@ class SubCategoryController extends Controller
     }
 
     /**
+     * Display a listing of the sub-categories from specific Category.
+     */
+    public function productsList(SubCategory $category): JsonResponse
+    {
+        $data = [];
+        try {
+            $data = $this->subCategoryService->productsList($category);
+            return Response::Success($data['product'], $data['message'], $data['code']);
+        } catch (Throwable $th) {
+            $message = $th->getMessage();
+            return Response::Error($data, $message);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(SubCategory $category): JsonResponse

@@ -213,7 +213,8 @@ return [
         'state_id'              => 'المدينة',
         'street_address_ar'     => 'المنطقة باللغة العربية',
         'street_address_en'     => 'المنطقة باللغة الانكليزية',
-        'warehouse_id'          => 'المستودع'
+        'warehouse_id'          => 'المستودع',
+        'subcategory_id'        => 'التصنيف',
     ],
 
 ];

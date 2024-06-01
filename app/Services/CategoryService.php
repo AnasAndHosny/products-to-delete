@@ -53,7 +53,7 @@ class CategoryService
 
     public function subCategoriesList(Category $category): array
     {
-        $category = SubCategory::where('category_id', $category->id)->paginate(2);
+        $category = SubCategory::where('category_id', $category->id)->paginate();
         $category = new SubCategoryCollection($category);
         $message = __('messages.index_success', ['class' => __('Categories')]);
         $code = 200;

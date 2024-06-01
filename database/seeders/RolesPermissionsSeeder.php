@@ -26,7 +26,8 @@ class RolesPermissionsSeeder extends Seeder
         $permissions = [
             'category.index', 'category.store', 'category.show', 'category.update', 'category.destroy',
             'warehouse.index', 'warehouse.store', 'warehouse.show', 'warehouse.update',
-            'distributionCenter.index', 'distributionCenter.store', 'distributionCenter.show', 'distributionCenter.update'
+            'distributionCenter.index', 'distributionCenter.store', 'distributionCenter.show', 'distributionCenter.update',
+            'product.index', 'product.store', 'product.show', 'product.update',
         ];
         foreach ($permissions as $permissionName) {
             Permission::findOrCreate($permissionName, 'web');
@@ -42,8 +43,7 @@ class RolesPermissionsSeeder extends Seeder
 
         // Create users and assign roles
         $adminUser = User::factory()->create([
-            'name' => 'Admin User',
-            'username' => 'admin',
+            'name' => 'admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);

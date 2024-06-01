@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Product;
 
 use App\Http\Responses\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-class UserSignupRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,25 @@ class UserSignupRequest extends FormRequest
     {
         return [
             'image' => ['image', 'nullable', 'mimes:jpeg,png,bmp,jpg,gif,svg', 'max:256'],
-            'name' => ['required', 'string', 'min:3'],
-            'email' => ['required', 'unique:users,email', 'email'],
-            'password' => ['required', 'min:8'],
+            'name_ar' => ['string', 'unique:products'],
+            'name_en' => ['string', 'unique:products'],
+            'description_ar' => ['string'],
+            'description_en' => ['string'],
+            'manufacturer' => ['string'],
+            'price' => ['regex:/^\d+(\.\d{1,2})?$/', 'min:0'],
+            'subcategory_id' => ['exists:sub_categories,id']
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'price.regex' => __("The price's value is invalid."),
         ];
     }
 
