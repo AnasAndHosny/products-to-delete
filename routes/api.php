@@ -4,7 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DistributionCenterController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\WarehouseController;
@@ -57,8 +59,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('products')->controller(ProductController::class)->group(function () {
         Route::get('/', 'index')->middleware('can:product.index');
         Route::post('/', 'store')->middleware('can:product.store');
-        Route::get('{product}','show')->middleware('can:product.show');
+        Route::get('{product}', 'show')->middleware('can:product.show');
         Route::patch('{product}', 'update')->middleware('can:product.update');
+    });
+
+    Route::prefix('employees')->controller(EmployeeController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/', 'store');
+        Route::get('profile', 'showProfile');
+        Route::patch('profile', 'updateProfile');
+        Route::get('{employee}', 'show');
+        Route::patch('{employee}', 'update');
     });
 });
 
@@ -72,4 +83,9 @@ Route::prefix('states')->controller(StateController::class)->group(function () {
     Route::post('/', 'store');
     Route::get('{state}', 'show');
     Route::patch('{state}', 'update');
+});
+
+Route::prefix('roles')->controller(RoleController::class)->group(function () {
+    Route::get('warehouse', 'warehouseRolesList');
+    Route::get('distribution-center', 'distributionCenterRolesList');
 });

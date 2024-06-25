@@ -60,5 +60,9 @@
     "distribution center":"مركز التوزيع",
     "products":"المنتجات",
     "product":"المنتج",
-    "The price's value is invalid.":"قيمة السعر غير صالحة."
+    "The price's value is invalid.":"قيمة السعر غير صالحة.",
+    "employees":"الموظفين",
+    "employee":"الموظف",
+    "The role field is required when changing the employable type.":"حقل الرتبة الوظيفية مطلوب عند تغيير نوع القابل للتوظيف.",
+    "roles":"الرتب الوظيفية"
 }

@@ -177,6 +177,7 @@ return [
         'name_en'               => 'الاسم الانكليزي',
         'username'              => 'اسم المُستخدم',
         'email'                 => 'البريد الالكتروني',
+        'full_name'             => 'الاسم الثلاثي',
         'first_name'            => 'الاسم',
         'last_name'             => 'اسم العائلة',
         'password'              => 'كلمة المرور',
@@ -215,6 +216,12 @@ return [
         'street_address_en'     => 'المنطقة باللغة الانكليزية',
         'warehouse_id'          => 'المستودع',
         'subcategory_id'        => 'التصنيف',
+        'birthday'              => 'تاريخ الميلاد',
+        'role_id'               => 'الرتبة الوظيفية',
+        'employable_type'       => 'نوع مكان العمل',
+        'employable_id'         => 'مكان العمل',
+        'phone_number'          => 'رقم الهاتف',
+        'ssn'                   => 'الرقم الوطني',
     ],
 
 ];

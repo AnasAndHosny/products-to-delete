@@ -16,7 +16,7 @@ class Category extends Model
         'name_en'
     ];
 
-    // implement the attribute
+    // Accessor for the localized name attribute
     public function getNameAttribute($value)
     {
         return $this->{'name_' . App::getlocale()};

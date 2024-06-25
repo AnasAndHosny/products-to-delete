@@ -198,6 +198,9 @@ return [
         'street_address_en'       => 'street address in english',
         'warehouse_id'            => 'warehouse',
         'subcategory_id'          => 'category',
+        'role_id'                 => 'role',
+        'employable_type'         => 'workplace type',
+        'employable_id'           => 'workplace',
     ],
 
 ];

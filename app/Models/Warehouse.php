@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
 
 class Warehouse extends Model
@@ -40,5 +40,10 @@ class Warehouse extends Model
     public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
+    }
+
+    public function employees(): MorphMany
+    {
+        return $this->morphMany(Employee::class, 'employable');
     }
 }

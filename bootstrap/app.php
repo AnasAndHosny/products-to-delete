@@ -4,6 +4,7 @@ use App\Http\Responses\Response;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\DistributionCenter;
+use App\Models\Employee;
 use App\Models\Product;
 use App\Models\State;
 use App\Models\SubCategory;
@@ -45,39 +46,18 @@ return Application::configure(basePath: dirname(__DIR__))
         // handle route model binding exceptions from api requests and send JsonResponse
         $exceptions->render(function (NotFoundHttpException $e, $request) {
             if ($request->is('api/*') && ($e->getPrevious() instanceof ModelNotFoundException)) {
-                switch ($e->getPrevious()->getModel()) {
-                    case User::class:
-                        $class = 'user';
-                        break;
+                $class = match ($e->getPrevious()->getModel()) {
+                    User::class => 'user',
+                    Category::class, SubCategory::class => 'category',
+                    City::class  => 'city',
+                    State::class => 'state',
+                    Warehouse::class => 'warehouse',
+                    DistributionCenter::class => 'distribution center',
+                    Product::class => 'product',
+                    Employee::class => 'employee',
+                    default => 'record'
+                };
 
-                    case Category::class: case SubCategory::class:
-                        $class = 'category';
-                        break;
-
-                    case City::class:
-                        $class = 'city';
-                        break;
-
-                    case State::class:
-                        $class = 'state';
-                        break;
-
-                    case Warehouse::class:
-                        $class = 'warehouse';
-                        break;
-
-                    case DistributionCenter::class:
-                        $class = 'distribution center';
-                        break;
-
-                    case Product::class:
-                        $class = 'product';
-                        break;
-
-                    default:
-                        $class = 'record';
-                        break;
-                }
                 return Response::Error([], __('messages.notFound', ['class' => __($class)]), 404);
             }
         });

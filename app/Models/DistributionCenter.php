@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
 
 class DistributionCenter extends Model
@@ -45,5 +46,10 @@ class DistributionCenter extends Model
     public function warehouse(): BelongsTo
     {
         return $this->belongsTo(Warehouse::class);
+    }
+
+    public function employees(): MorphMany
+    {
+        return $this->morphMany(Employee::class, 'employable');
     }
 }
