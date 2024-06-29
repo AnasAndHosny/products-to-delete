@@ -19,7 +19,7 @@ class Product extends Model
         'name_en',
         'description_ar',
         'description_en',
-        'manufacturer',
+        'manufacturer_id',
         'price',
         'subcategory_id'
     ];
@@ -30,8 +30,8 @@ class Product extends Model
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value / 100,
-            set: fn($value) => $value * 100
+            get: fn ($value) => $value / 100,
+            set: fn ($value) => $value * 100
         );
     }
 
@@ -44,6 +44,11 @@ class Product extends Model
     public function getDescriptionAttribute($value)
     {
         return $this->{'description_' . App::getlocale()};
+    }
+
+    public function manufacturer(): BelongsTo
+    {
+        return $this->belongsTo(Manufacturer::class);
     }
 
     public function subCategory(): BelongsTo

@@ -222,6 +222,7 @@ return [
         'employable_id'         => 'مكان العمل',
         'phone_number'          => 'رقم الهاتف',
         'ssn'                   => 'الرقم الوطني',
+        'manufacturer_id'       => 'الشركة المصنعة',
     ],
 
 ];

@@ -201,6 +201,7 @@ return [
         'role_id'                 => 'role',
         'employable_type'         => 'workplace type',
         'employable_id'           => 'workplace',
+        'manufacturer_id'         => 'manufacturer',
     ],
 
 ];

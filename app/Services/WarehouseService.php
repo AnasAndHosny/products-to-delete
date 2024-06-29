@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
-use App\Http\Resources\WarehouseResource;
 use App\Models\Warehouse;
+use App\Services\ImageService;
+use App\Models\DistributionCenter;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\WarehouseResource;
+use App\Http\Resources\DistributionCenterResource;
 
 class WarehouseService
 {
@@ -57,5 +61,15 @@ class WarehouseService
         $message = __('messages.update_success', ['class' => __('warehouse')]);
         $code = 200;
         return ['warehouse' => $warehouse, 'message' => $message, 'code' => $code];
+    }
+
+    public function showDistributionCenters(): array
+    {
+        $warehouse = Auth::user()->employee->employable_id;
+
+        $distributionCenter = DistributionCenterResource::collection(DistributionCenter::where('warehouse_id', $warehouse)->get());
+        $message = __('messages.index_success', ['class' => __('distribution centers')]);
+        $code = 200;
+        return ['distributionCenter' => $distributionCenter, 'message' => $message, 'code' => $code];
     }
 }

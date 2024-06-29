@@ -52,4 +52,9 @@ class DistributionCenter extends Model
     {
         return $this->morphMany(Employee::class, 'employable');
     }
+
+    public function buyOrders(): MorphMany
+    {
+        return $this->morphMany(Order::class, 'orderable_by');
+    }
 }

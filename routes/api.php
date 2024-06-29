@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\DistributionCenterController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StateController;
@@ -45,6 +47,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('warehouses')->controller(WarehouseController::class)->group(function () {
         Route::get('/', 'index')->middleware('can:warehouse.index');
         Route::post('/', 'store')->middleware('can:warehouse.store');
+        Route::get('distribution-centers', 'showDistributionCenters')->middleware('can:warehouse.show.centers');
         Route::get('{warehouse}', 'show')->middleware('can:warehouse.show');
         Route::patch('{warehouse}', 'update')->middleware('can:warehouse.update');
     });
@@ -70,6 +73,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::patch('profile', 'updateProfile');
         Route::get('{employee}', 'show');
         Route::patch('{employee}', 'update');
+    });
+
+    Route::prefix('manufacturer')->controller(ManufacturerController::class)->group(function () {
+        Route::get('/', 'index')->middleware('can:manufacturer.index');
+        Route::post('/', 'store')->middleware('can:manufacturer.store');
+        Route::get('{manufacturer}', 'show')->middleware('can:manufacturer.show');
+        Route::patch('{manufacturer}', 'update')->middleware('can:manufacturer.update');
+    });
+
+    Route::prefix('orders')->controller(OrderController::class)->group(function () {
+        Route::get('/', 'buyOrdersList');
+        Route::post('/', 'store');
     });
 });
 

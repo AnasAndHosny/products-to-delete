@@ -25,7 +25,7 @@ class ProductService
             'name_en' => $request['name_en'],
             'description_ar' => $request['description_ar'],
             'description_en' => $request['description_en'],
-            'manufacturer' => $request['manufacturer'],
+            'manufacturer_id' => $request['manufacturer_id'],
             'price' => $request['price'],
             'subcategory_id' => $request['subcategory_id']
         ]);
@@ -53,7 +53,7 @@ class ProductService
             'name_en' => $request['name_en'] ?? $product['name_en'],
             'description_ar' => $request['description_ar'] ?? $product['description_ar'],
             'description_en' => $request['description_en'] ?? $product['description_en'],
-            'manufacturer' => $request['manufacturer'] ?? $product['manufacturer'],
+            'manufacturer_id' => $request['manufacturer_id'] ?? $product['manufacturer_id'],
             'price' => $request['price'] ?? $product['price'],
             'subcategory_id' => $request['subcategory_id'] ?? $product['subcategory_id'],
         ]);

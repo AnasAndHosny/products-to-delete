@@ -5,6 +5,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\DistributionCenter;
 use App\Models\Employee;
+use App\Models\Manufacturer;
 use App\Models\Product;
 use App\Models\State;
 use App\Models\SubCategory;
@@ -55,6 +56,7 @@ return Application::configure(basePath: dirname(__DIR__))
                     DistributionCenter::class => 'distribution center',
                     Product::class => 'product',
                     Employee::class => 'employee',
+                    Manufacturer::class => 'manufacturer',
                     default => 'record'
                 };
 
